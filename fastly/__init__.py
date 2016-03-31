@@ -716,9 +716,9 @@ class FastlyConnection(object):
 		return self._status(content)
 
 
-	def list_domains_by_service(self, service_id):
+	def list_domains_by_service(self, service_id, service_version):
 		"""List the domains within a service."""
-		content = self._fetch("/service/%s/domain" % service_id, method="GET")
+		content = self._fetch("/service/%s/service_version/%d/domain" % (service_id, service_version), method="GET")
 		return map(lambda x: FastlyDomain(self, x), content)
 
 
