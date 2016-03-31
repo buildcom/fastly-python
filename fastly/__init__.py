@@ -680,10 +680,10 @@ class FastlyConnection(object):
 		content = self._fetch("/service")
 		return map(lambda x: FastlyService(self, x), content)
 
-    def public_ip_list(self):
-        """List public IP."""
-        content = self._fetch("/public-ip-list")
-        return FastlyService(self, content)
+	def public_ip_list(self):
+		"""List public IP."""
+		content = self._fetch("/public-ip-list")
+		return FastlyService(self, content)
 
 	def get_service(self, service_id):
 		"""Get a specific service by id."""
@@ -1431,6 +1431,7 @@ class FastlyService(FastlyObject):
 		"publish_key",
 		"active_version",
 		"versions",
+		"addresses",
 		"comment",
 	]
 
