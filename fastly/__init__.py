@@ -683,7 +683,7 @@ class FastlyConnection(object):
     def public_ip_list(self):
         """List public IP."""
         content = self._fetch("/public-ip-list")
-        return content
+        return FastlyService(self, content)
 
 	def get_service(self, service_id):
 		"""Get a specific service by id."""
