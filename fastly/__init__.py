@@ -558,6 +558,11 @@ class FastlyConnection(object):
 		content = self._fetch(path, method="PURGE", headers={ "Host": host })
 		return FastlyPurge(self, content)
 
+	def	purge_key(self, service_id, key):
+		"""purge by surrogate key"""
+		content = self._fetch("/service/%s/pure/%s" % (service_id, key), method="POST", body=body)
+		return FastlyPurge(self, content)
+
 
 	def check_purge_status(self, purge_id):
 		"""Get the status and times of a recently completed purge."""
@@ -718,7 +723,7 @@ class FastlyConnection(object):
 
 	def list_domains_by_service(self, service_id, service_version):
 		"""List the domains within a service."""
-		content = self._fetch("/service/%s/service_version/%d/domain" % (service_id, service_version), method="GET")
+		content = self._fetch("/service/%s/version/%d/domain" % (service_id, service_version), method="GET")
 		return map(lambda x: FastlyDomain(self, x), content)
 
 
